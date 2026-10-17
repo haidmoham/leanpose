@@ -1,0 +1,10 @@
+name = "leanpose"
+version = "0.1.0"
+defaultTargets = ["LeanPose", "leanpose"]
+
+[[lean_lib]]
+name = "LeanPose"
+
+[[lean_exe]]
+name = "leanpose"
+root = "Main"

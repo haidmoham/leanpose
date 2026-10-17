@@ -1,0 +1,89 @@
+{
+  "snapshot": {
+    "schemaVersion": "leanpose.membership.v1",
+    "candidateIds": [
+      "alpha",
+      "beta",
+      "gamma",
+      "isolated"
+    ],
+    "placements": [
+      {
+        "artifact": {
+          "source": "cncf",
+          "inventoryYear": 2024,
+          "repository": "synthetic/landscape",
+          "revision": "revision-one",
+          "rawSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "category": "Data / Store",
+        "members": [
+          {
+            "candidateId": "alpha",
+            "occurrenceIds": [
+              "row-a1",
+              "row-a2"
+            ]
+          },
+          {
+            "candidateId": "beta",
+            "occurrenceIds": [
+              "row-b1"
+            ]
+          }
+        ]
+      },
+      {
+        "artifact": {
+          "source": "cncf",
+          "inventoryYear": 2024,
+          "repository": "synthetic/landscape",
+          "revision": "revision-two",
+          "rawSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "category": "Data / Store",
+        "members": [
+          {
+            "candidateId": "alpha",
+            "occurrenceIds": [
+              "row-a3"
+            ]
+          },
+          {
+            "candidateId": "beta",
+            "occurrenceIds": [
+              "row-b2"
+            ]
+          }
+        ]
+      },
+      {
+        "artifact": {
+          "source": "cncf",
+          "inventoryYear": 2025,
+          "repository": "synthetic/landscape",
+          "revision": "revision-three",
+          "rawSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        },
+        "category": "Data / Compute",
+        "members": [
+          {
+            "candidateId": "alpha",
+            "occurrenceIds": [
+              "row-a4"
+            ]
+          },
+          {
+            "candidateId": "gamma",
+            "occurrenceIds": [
+              "row-g1"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "query": {
+    "candidateId": "alpha"
+  }
+}
