@@ -1,0 +1,32 @@
+name: Lean kernel
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install the pinned Lean toolchain
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Check proofs and build executable
+        run: lake build
+      - name: Reject proof placeholders
+        run: |
+          set -euo pipefail
+          python3 scripts/check_proofs.py
+          lake env lean tests/ProofAudit.lean | tee /tmp/axioms.txt
+          if grep -q sorryAx /tmp/axioms.txt; then exit 1; fi
+      - name: Black-box protocol and relation regression tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Check every neighborhood against the pinned public Log Pose oracle
+        run: |
+          git init /tmp/log-pose-oracle
+          git -C /tmp/log-pose-oracle fetch --depth=1 https://github.com/haidmoham/log-pose.git 734fddd33d88a5ac3c63cf3f7b8df1ab3f1bb76a
+          git -C /tmp/log-pose-oracle checkout --detach FETCH_HEAD
+          python3 scripts/check_log_pose_parity.py --log-pose /tmp/log-pose-oracle
